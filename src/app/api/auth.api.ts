@@ -51,15 +51,4 @@ const payload=await res.json()
 
 return payload
 }
-export async function logOut(){
-  const res=await fetch(`${process.env.API}/auth/logout`,{
-    method:"GET",
-    headers:{
-      ...(await getAuthHeader()),
-      ...JSON_HEADER
-    }
-  })
-  const payload= await res.json()
-  console.log(payload, "payloaaad");
-  
-}
+
