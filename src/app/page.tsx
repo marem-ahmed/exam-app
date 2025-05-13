@@ -1,10 +1,9 @@
 import React from 'react'
-import LoginPage from './[locale]/auth/login/page';
+import { redirect } from 'next/navigation';
 
 export default function page() {
+  redirect('/en/auth/login')
   return (
-    <div>
-      <LoginPage></LoginPage>
-    </div>
+   <div></div>
   );
 }

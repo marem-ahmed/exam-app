@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import Image from "next/image";
-import SideBar from '../sideBar';
+import SideBar from './sideBar';
 
 export default function layout({children}:{children:ReactNode}) {
 

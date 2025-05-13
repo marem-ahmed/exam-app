@@ -9,7 +9,7 @@ export default async function page() {
    <main>
     <UserCard
      name="Mariam Ahmed"
-  avatarUrl="/assets/images/user.png"
+  avatarUrl=" /assets/images/user.png"
   passed={27}
   fastestTime="13 min"
   correctAnswers={200}
