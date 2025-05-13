@@ -45,7 +45,7 @@ callbacks:{
         if(user){
             token.user=user.user;
             token.token=user.token;
-            // token.role = "admin";
+            token.role = "admin";
         }
         console.log("Token:", token);
 
