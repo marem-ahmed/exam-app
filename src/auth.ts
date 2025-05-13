@@ -33,6 +33,7 @@ providers:[
         id:payload.user._id,
         user:payload.user,
         token:payload.token,
+        role:payload.role
         }
     }
 })
@@ -44,7 +45,10 @@ callbacks:{
         if(user){
             token.user=user.user;
             token.token=user.token;
+            // token.role = "admin";
         }
+        console.log("Token:", token);
+
         return token
     },
     session:({session,token})=>{

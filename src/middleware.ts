@@ -8,18 +8,25 @@ export default async function middleware(req:NextRequest) {
    if(privatePages.has(pathname)){
     if(!token){
         const redirectUrl=new URL("en/auth/login",req.nextUrl.origin)
-        return NextResponse.redirect(redirectUrl)
     }
-    return NextResponse.next()
-   }else{
-    if(authPages.has(pathname)&&token){
-        const redirectUrl=new URL("/",req.nextUrl.origin)
-        return NextResponse.redirect(redirectUrl)
-    }
-   }
-   return NextResponse.next()
+
+   if( token&&token.role === "user"){
+    return NextResponse.redirect(
+      new URL("/en/userDashboard", req.nextUrl.origin)
+    );
+  }
    
-}
+    if (token&&token.role === "admin") {
+      return NextResponse.redirect(new URL("/en/adminDashboard", req.nextUrl.origin));
+    
+  } 
+  if (authPages.has(pathname) && token) {
+    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
+  }
+
+  return NextResponse.next();
+   
+}}
 export const config = {
   matcher: [
     /*
