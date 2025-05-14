@@ -7,25 +7,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useRegister from "../_hooks/use-register";
 
-
-
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import {
-  RegistertionInputs,
-  useRegisterSchema,
-} from "@/lib/schemes/auth.schema";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { RegistertionInputs, useRegisterSchema } from "@/lib/schemes/auth.schema";
 
 export default function Page() {
   //Hooks
   const registerationSchema = useRegisterSchema();
-  const { isPending, error, register } = useRegister();
+  const { register } = useRegister();
 
   //navigation
   //Form
@@ -53,7 +41,7 @@ export default function Page() {
   return (
     <div className="flex  items-center justify-center bg-white w-full">
       <div className="bg-white p-8  w-96 mt-14">
-        <h2 className="text-2xl font-bold  text-gray-800 mb-6">Sign Up</h2>
+        <h1 className="text-2xl font-bold  text-gray-800 mb-6">Sign Up</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             {/* userName Input */}
@@ -184,11 +172,7 @@ export default function Page() {
             <Button
               type="submit"
               className="w-full bg-blue-600 text-white hover:bg-blue-700  rounded-3xl mt-4"
-              disabled={
-                form.formState.isSubmitting ||
-                (form.formState.isSubmitted && !form.formState.isValid)
-              }
-            >
+              disabled={form.formState.isSubmitting || (form.formState.isSubmitted && !form.formState.isValid)}>
               Create Account
             </Button>
           </form>

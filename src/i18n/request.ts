@@ -1,8 +1,8 @@
 import { getRequestConfig } from "next-intl/server";
-import { Formats, hasLocale } from "next-intl";
+import { Formats, hasLocale, Locale } from "next-intl";
 import { routing } from "./routing";
 
-export const getFormats = (locale: (typeof routing.locales)[number]): Formats => {
+export const getFormats = (locale: Locale): Formats => {
   return {
     number: {
       digit: {
