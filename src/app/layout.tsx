@@ -1,18 +1,9 @@
 import "./globals.css";
-import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html>
-      <body>
-        <Toaster />
-
-        {children}
-      </body>
-    </html>
-  );
+  return children;
 }

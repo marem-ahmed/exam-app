@@ -1,28 +1,25 @@
 // components/ResultModal.tsx
 "use client";
 
-import { useExamResult } from "@/components/Providers/components/result-context.provider";
+import { useExamResult } from "@/components/providers/components/result-context.provider";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 
 export default function ResultQuiz() {
-
   const { result, showModel, setShowModel } = useExamResult();
-  
 
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
 
-  const correct = result?.correct??0;
-  const incorrect = result?.wrong??0;
+  const correct = result?.correct ?? 0;
+  const incorrect = result?.wrong ?? 0;
   const total = correct + incorrect;
   const score = Math.round((correct / total) * 100);
-    useEffect(() => {
-      if (showModel) {
-        setOpen(true);
-      }
-    }, [showModel]);
-
+  useEffect(() => {
+    if (showModel) {
+      setOpen(true);
+    }
+  }, [showModel]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -32,14 +29,7 @@ export default function ResultQuiz() {
           <div className="flex justify-center mb-4">
             <div className="relative w-24 h-24 ">
               <svg className="w-full h-full transform -rotate-90">
-                <circle
-                  cx="48"
-                  cy="48"
-                  r="42"
-                  stroke="#E63946"
-                  strokeWidth="12"
-                  fill="none"
-                />
+                <circle cx="48" cy="48" r="42" stroke="#E63946" strokeWidth="12" fill="none" />
                 <circle
                   cx="48"
                   cy="48"
@@ -52,9 +42,7 @@ export default function ResultQuiz() {
                   strokeLinecap="round"
                 />
               </svg>
-              <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
-                {score}%
-              </div>
+              <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">{score}%</div>
             </div>
           </div>
 
@@ -77,14 +65,13 @@ export default function ResultQuiz() {
         <div className="flex justify-between gap-4 ">
           <Button
             variant="outline"
-            className="w-full bg-mainColor text-white py-1 px- rounded-xl mt-2 border-mainColor"
-            onClick={() => setOpen(false)}
-          >
+            className="w-full bg-main-color text-white py-1 px- rounded-xl mt-2 border-main-color"
+            onClick={() => setOpen(false)}>
             Back
           </Button>
-          <Button
-             variant="outline"
-           className="w-full bg-mainColor text-white py-1 px- rounded-xl mt-2 border-mainColor">Show results</Button>
+          <Button variant="outline" className="w-full bg-main-color text-white py-1 px- rounded-xl mt-2 border-main-color">
+            Show results
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

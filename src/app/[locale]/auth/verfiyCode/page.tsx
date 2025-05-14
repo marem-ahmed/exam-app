@@ -1,10 +1,6 @@
-import React from 'react'
+import React from "react";
 import VerfiyCodeForm from "./_components/VerfiyCodeForm";
 
 export default function page() {
-  return (
-    <div>
-      <VerfiyCodeForm/>
-    </div>
-  )
+  return <VerfiyCodeForm />;
 }
