@@ -4,14 +4,14 @@ import { FcAlarmClock } from "react-icons/fc";
 
 type durationProps = {
   duration: number;
-  onFinish?:()=>void
+  onFinish?: () => void;
 };
 export default function QuizDuration({ duration }: durationProps) {
-  const [timeLeft, setTimeLeft] = useState(duration*60);
+  const [timeLeft, setTimeLeft] = useState(duration * 60);
 
   useEffect(() => {
     if (timeLeft <= 0) return;
-   const timer = setInterval(() => {
+    const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
@@ -29,7 +29,7 @@ export default function QuizDuration({ duration }: durationProps) {
   const seconds = timeLeft % 60;
   return (
     <div>
-      <p className="flex text-mainColor text-center justfiy-center items-center font-bold">
+      <p className="flex text-main-color text-center justfiy-center items-center font-bold">
         <FcAlarmClock className="text-3xl" />
         {minutes}:{seconds.toString().padStart(2, "0")}
       </p>

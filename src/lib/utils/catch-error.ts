@@ -1,14 +1,22 @@
-
-export default async function catchError<T>(
-  callback:()=> Promise<APIResponse<T>>
-): Promise<[SuccessFulResponse<T> , null]|[null , string]> {
+export default async function catchError<T, E extends new (message?: string) => Error>(
+  promise: Promise<APIResponse<T>>,
+  errorsToCatch?: E[]
+): Promise<[T, null] | [null, InstanceType<E>]> {
   try {
-    const payload = await callback();
-    if ("code" in payload && payload.code !== 200) {
-      throw new Error(payload.message || 'Unknown error');
-    }
-    return [payload as SuccessFulResponse<T>, null];
+    const data = await promise;
+
+    if ("code" in data) throw new Error(data.message);
+
+    return [data, null];
   } catch (error) {
-    return [null, (error as Error).message];
+    if (!errorsToCatch) {
+      return [null, error as InstanceType<E>];
+    }
+
+    if (errorsToCatch.some((e) => error instanceof e)) {
+      return [null, error as InstanceType<E>];
+    }
+
+    throw error;
   }
 }
